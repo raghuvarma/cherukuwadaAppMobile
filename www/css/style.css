@@ -1,0 +1,116 @@
+/* Empty. Add your own CSS if you like */
+.card .item {
+	padding: 0px;
+	font-size: 12px;
+}
+.plus-icon {
+	text-align: center;
+}
+.ion-ios-plus-outline {
+	font-size:  20px;
+}
+
+/* General
+==================================*/
+h1 {
+    color: #fff;
+    text-shadow: 0 1px 0px #000;
+    font-size: 42px;
+}
+
+/* Utilities
+==================================*/
+.title-bordered {
+    border-top: solid 2px #bbb;
+    padding-top: 30px;
+}
+
+p {
+    color: #555;
+    margin: 0 0 25px;
+}
+
+.scroll {
+    height: 100%;
+}
+
+/* Login
+==================================*/
+.app-icon {
+    background-color: #fff;
+    background: url('../img/crown.jpg') center;
+    background-size: cover;
+    border-radius: 50%;
+    height: 125px;
+    margin: 0 auto;
+    width: 125px;
+}
+.item-input {
+	width: 92%;
+}
+.sign-up-btn {
+	background: #ccc;
+}
+.sign-up-btn:hover {
+	background-color: #e42112;
+	color:#fff;
+}
+.find-detail {
+	margin-bottom: 1px !important;
+}
+.find-details-btn {
+	padding-left: 12px;
+	padding-right: 17px;
+}
+.address-card {
+	margin-left: 10px;
+    margin-right: 20px;
+}
+.padding-0 {
+	padding: 0;
+}
+.padding-right-0 {
+	padding-right: 0px;
+}
+.table-heading {
+	font-weight: bold;
+	font-size: 15px;
+	margin-top: 50px;
+}
+.table-body {
+	font-size: 15px;
+}
+
+.ca-users-list {
+	margin-top: 50px;
+}
+.ca-user-name, .ca-user-mobile {
+	color: #FFFFFF !important;
+}
+.item.item-avatar.ca-item-avatar {
+	padding-left: 15px !important;
+    padding-top: 10px !important;
+    min-height: 20px !important;
+}
+.item.item-body.ca-item-body, .ca-selected-event-body, .ca-selected-user-body {
+    padding: 10px 15px !important;
+}
+.ca-card-event-details, .ca-card-user-details {
+	margin-top: 64px;
+}
+.ca-selected-event-name, .ca-selected-user-name {
+	margin-top: 15px !important;
+}
+.ca-selected-event-image{
+	min-height: 20px !important;
+}
+.ca-selected-user-image {
+    min-height: 60px !important;
+}
+.ca-events-data-image img, .ca-user-data-image img {
+	background-color: silver;
+}
+.ca-tabs {
+	background-color: #696969 !important;
+	border-color: #696969 !important;
+}

@@ -1,0 +1,156 @@
+<ion-view view-title="Dash Board" align-title="left">
+    <ion-nav-bar class="bar-assertive-900" align-title="left">
+      <ion-nav-back-button class="no-text"></ion-nav-back-button>
+    </ion-nav-bar>
+    <ion-content style="background: url(img/login.jpg) center; background-size: cover;">
+        <div class="list find-detail">
+          <div class="tabs-striped tabs-top tabs-background-positive tabs-color-light">
+            <div class="tabs ca-tabs">
+              <a class="tab-item" data-ng-class="{'active': show.userDetails}" href data-ng-click="fnShowUsers()">
+                <i class="icon ion-person-stalker"></i>
+                Users
+              </a>
+              <a class="tab-item" data-ng-class="{'active': show.events}" href data-ng-click="fnShowEvents()">
+                <i class="icon ion-star"></i>
+                Events
+              </a>
+              <a class="tab-item" data-ng-class="{'active': show.posts}" href data-ng-click="fnShowPosts()">
+                <i class="icon ion-ios-paper"></i>
+                Posts
+              </a>
+            </div>
+          </div>
+          <div class="tabs-striped tabs-color-assertive">
+            <div class="tabs ca-tabs">
+              <a class="tab-item active" href="#">
+                <i class="icon ion-person-stalker"></i>
+                Users
+              </a>
+              <a class="tab-item" href="#">
+                <i class="icon ion-star"></i>
+                Events
+              </a>
+              <a class="tab-item" href="#">
+                <i class="icon ion-ios-paper"></i>
+                Posts
+              </a>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="address-card card">
+            <div class="item item-text-wrap">
+                <div class="row">
+                  <div class="col col-50 padding-0">
+                    <span>Name : </span>
+                    <span data-ng-bind="existingUserDetails.name"></span>
+                  </div>
+                  <div class="col col-50 padding-0">
+                    <span>Mobile Number :</span>
+                    <span data-ng-bind="existingUserDetails.mobile"></span>
+                  </div>
+                </div>
+            </div>
+          </div>
+          <div>
+            <div ng-show="show.userDetails && !show.userDetailed">
+              <div class="list ca-users-list">
+                <a class="item item-avatar" data-ng-repeat="obj in otherUsersDetails track by $index" data-ng-click="fnOpenUserDetailed(obj)">
+                  <img src="{{obj.imageUrl}}">
+                  <h2 class="ca-user-name" data-ng-bind="obj.name"></h2>
+                  <p class="ca-user-mobile" data-ng-bind="obj.mobile"></p>
+                </a>
+              </div>
+            </div>
+            <div ng-show="show.userDetails && show.userDetailed">
+              <div class="list card ca-card-user-details">
+                <div class="item item-avatar ca-selected-user-image">
+                  <img data-ng-src="{{selectedUser.imageUrl}}">
+                  <h2 class="ca-selected-user-name" data-ng-bind="selectedUser.name"></h2>
+                </div>
+
+                <div class="item item-body ca-selected-user-body">
+                  <p><span>User Name: </span><spam data-ng-bind="selectedUser.userName"></span></p>
+                  <p><span>Mobile No: </span><spam data-ng-bind="selectedUser.mobile"></span></p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div ng-show="show.events && !show.eventsDetailed">
+            <div class="list ca-users-list">
+              <a class="item item-avatar ca-events-data-image" data-ng-repeat="obj in eventsData | orderBy :obj.event_on track by $index" data-ng-click="fnOpenEventDetailed(obj)">
+                <img ng-src="{{getEventImage(obj)}}">
+                <h2 class="ca-user-name" data-ng-bind="obj.name"></h2>
+                <p class="ca-user-mobile" data-ng-bind="obj.description"></p>
+                <p class="ca-user-mobile">{{ fnUpdateEventOn(obj) | date:'EEEE, MMM d, y @ h:mma'}}</p>
+              </a>
+            </div>
+        </div>
+        <div data-ng-show="show.events && show.eventsDetailed">
+          <div class="list card ca-card-event-details">
+            <div class="item item-avatar ca-selected-event-image">
+              <img data-ng-src="{{getEventImage(selectedEvent)}}">
+              <h2 class="ca-selected-event-name" data-ng-bind="selectedEvent.name"></h2>
+              <p>{{ fnUpdateEventOn(selectedEvent) | date:'EEEE, MMM d, y @ h:mma' }}</p>
+              <p>
+                <span><b>Event Status: </b></span>
+                <span data-ng-bind="fnCalculateDaysRemainOrCompletedInWords(selectedEvent)"></span>
+              </p>
+            </div>
+
+            <div class="item item-body ca-selected-event-body">
+              <p data-ng-bind="selectedEvent.description">                
+              </p>
+              <p>
+                <a href class="subdued">1 Like</a>
+                <a href class="subdued">5 Comments</a>
+              </p>
+            </div>
+          </div>          
+        </div>
+        <div ng-show="show.posts">
+            <button id="fab-profile" class="button button-fab button-fab-bottom-right button-energized-900 pane activated" nav-view="active" style="opacity: 1; box-shadow: rgba(0, 0, 0, 0) 0px 0px 10px; transform: translate3d(0%, 0px, 0px);" ng-click="modal.show()"><i class="icon ion-plus"></i></button>
+            <div class="row light table-heading">
+            </div>
+            <div class="list card" data-ng-repeat="postObj in postsData track by $index">
+              <div class="item item-avatar ca-item-avatar">
+                <h2 data-ng-bind="postObj.name"></h2>
+                <p><span>Created By: </span><span data-ng-bind="postObj.created_by"></span></p>
+              </div>
+              <div class="item item-body ca-item-body">
+                <p data-ng-bind="postObj.body">                  
+                </p>
+                <p>
+                  <a href class="subdued" data-ng-click="getComments('posts', postObj.id)">Comments</a>
+                </p>
+              </div>
+              <div class="item item-body ca-item-body">
+                <div data-ng-repeat="comment in postCommentsData track by $index"> 
+                  <p data-ng-bind="comment.name"></p>
+                  <p><span>Commented By: </span><span data-ng-bind="comment.created_by"></span></p>                
+                </div>
+                <div class="ca-comments-input">
+                  <input type="text" data-ng-model="newComment.name" placeholder="comment message" />
+                  <button data-ng-click="createComment('posts', postObj.id, newComment.name)">Post</button>
+                </div>                
+              </div>
+            </div>
+          </div>
+          <script id="templates/modal.html" type="text/ng-template">
+            <ion-modal-view>
+              <ion-header-bar class="bar bar-header bar-assertive-900">
+                <h1 class="title">New Post</h1>
+                <button class="button button-clear button-primary" ng-click="modal.hide()"><b>X</b></button>
+              </ion-header-bar>
+              <ion-content class="padding" style="background: url(img/login.jpg) center; background-size: cover;">
+                <div class="list">
+                  <ion-md-input placeholder="Post Name" highlight-color="balanced" type="text" ng-model="newPost.name"></ion-md-input>
+                  <ion-md-input placeholder="Post Body" highlight-color="balanced" type="text" ng-model="newPost.body"></ion-md-input>
+                  <button class="button button-full button-assertive" ng-click="fnCreatePost(newPost)">Create Post</button>
+                </div>
+              </ion-content>
+            </ion-modal-view>
+          </script>          
+        </div>
+    </ion-content>
+</ion-view>
