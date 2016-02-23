@@ -114,3 +114,27 @@ p {
 	background-color: #696969 !important;
 	border-color: #696969 !important;
 }
+.ca-comments-container {
+	border: 1px solid silver;
+	margin-bottom: 2px;
+    border-radius: 6px;
+    padding: 0 0 10px 10px;
+}
+.ca-comment-input {
+	width: 100%;
+    border: 1px solid silver;
+    border-radius: 4px;
+    margin: 5px 0px;
+    padding-left: 6px;
+}
+.ca-commented-by-heading, .ca-commented-by-data {
+	font: 12px serif;
+}
+.ca-commented-by-heading {
+    font-weight: bolder;
+}
+.ca-commented-by-data {
+	font-style: cursive;
+}
+
+

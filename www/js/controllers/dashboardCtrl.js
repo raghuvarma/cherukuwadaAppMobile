@@ -108,11 +108,11 @@ angular.module('cherukuwadaApp.dashboard', [])
     };
 
     $scope.fnUpdateEventOn = function(eventObject) {
-        if(eventObject && eventObject.event_on) {
-            var eventDateInUtcINMs = Date.parse(eventObject.event_on);
+        if(eventObject) {
+            var eventDateInUtcINMs = Date.parse(eventObject);
             var updatedDate = new Date(eventDateInUtcINMs - 19800000);
             return updatedDate;
-        }
+        } 
     }
 
     $scope.fnCalculateDaysRemainOrCompletedInWords = function(eventObject) {

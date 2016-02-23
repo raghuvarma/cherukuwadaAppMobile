@@ -94,7 +94,7 @@
               <p>{{ fnUpdateEventOn(selectedEvent) | date:'EEEE, MMM d, y @ h:mma' }}</p>
               <p>
                 <span><b>Event Status: </b></span>
-                <span data-ng-bind="fnCalculateDaysRemainOrCompletedInWords(selectedEvent)"></span>
+                <span data-ng-bind="fnCalculateDaysRemainOrCompletedInWords(selectedEvent.event_on)"></span>
               </p>
             </div>
 
@@ -125,12 +125,15 @@
                 </p>
               </div>
               <div class="item item-body ca-item-body">
-                <div data-ng-repeat="comment in postCommentsData track by $index"> 
+                <div class="ca-comments-container" data-ng-repeat="comment in postCommentsData track by $index"> 
                   <p data-ng-bind="comment.name"></p>
-                  <p><span>Commented By: </span><span data-ng-bind="comment.created_by"></span></p>                
+                  <p>
+                    <span class="ca-commented-by-heading">Commented By: </span>
+                    <span class="ca-commented-by-data" data-ng-bind="comment.created_by"></span> @ 
+                  </p>                
                 </div>
                 <div class="ca-comments-input">
-                  <input type="text" data-ng-model="newComment.name" placeholder="comment message" />
+                  <textarea class="ca-comment-input" rows="3" data-ng-model="newComment.name" placeholder="comment message"></textarea>
                   <button data-ng-click="createComment('posts', postObj.id, newComment.name)">Post</button>
                 </div>                
               </div>
