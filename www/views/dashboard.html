@@ -82,7 +82,7 @@
                 <img ng-src="{{getEventImage(obj)}}">
                 <h2 class="ca-user-name" data-ng-bind="obj.name"></h2>
                 <p class="ca-user-mobile" data-ng-bind="obj.description"></p>
-                <p class="ca-user-mobile">{{ fnUpdateEventOn(obj) | date:'EEEE, MMM d, y @ h:mma'}}</p>
+                <p class="ca-user-mobile">{{ fnUpdateEventOn(obj.event_on) | date:'EEEE, MMM d, y @ h:mma'}}</p>
               </a>
             </div>
         </div>
@@ -91,10 +91,10 @@
             <div class="item item-avatar ca-selected-event-image">
               <img data-ng-src="{{getEventImage(selectedEvent)}}">
               <h2 class="ca-selected-event-name" data-ng-bind="selectedEvent.name"></h2>
-              <p>{{ fnUpdateEventOn(selectedEvent) | date:'EEEE, MMM d, y @ h:mma' }}</p>
+              <p>{{ fnUpdateEventOn(selectedEvent.event_on) | date:'EEEE, MMM d, y @ h:mma' }}</p>
               <p>
                 <span><b>Event Status: </b></span>
-                <span data-ng-bind="fnCalculateDaysRemainOrCompletedInWords(selectedEvent.event_on)"></span>
+                <span am-time-ago="selectedEvent.event_on"></span>
               </p>
             </div>
 
@@ -130,6 +130,7 @@
                   <p>
                     <span class="ca-commented-by-heading">Commented By: </span>
                     <span class="ca-commented-by-data" data-ng-bind="comment.created_by"></span> @ 
+                    <span am-time-ago="comment.created_at"></span>
                   </p>                
                 </div>
                 <div class="ca-comments-input">

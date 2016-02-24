@@ -10,6 +10,8 @@ angular.module('cherukuwadaApp.dashboard', [])
     $scope.show.posts = false;
     $scope.show.eventsDetailed = false;
     $scope.newComment = {};
+    $scope.serverPath = 'http://hidden-lake-44952.herokuapp.com/';
+    //$scope.serverPath = 'http:localhost:3000/';
 
 	$scope.fnShowUsers = function() {	
         $scope.show.userDetails = true;
@@ -50,7 +52,7 @@ angular.module('cherukuwadaApp.dashboard', [])
         $scope.show.events = true;
         $scope.show.posts = false;
         $scope.show.eventsDetailed = false;
-        var eventsUrl = 'http://hidden-lake-44952.herokuapp.com/events.json'
+        var eventsUrl = $scope.serverPath + 'events.json'
         $http({ method : "GET",
             url : eventsUrl
         }).then(function mySucces(response) {
@@ -96,7 +98,7 @@ angular.module('cherukuwadaApp.dashboard', [])
     };
 
     $scope.fnLoadPosts = function() {
-        var postsUrl = 'http://hidden-lake-44952.herokuapp.com/posts.json'
+        var postsUrl = $scope.serverPath + 'posts.json'
         $http({
         method : "GET",
             url : postsUrl
@@ -132,8 +134,16 @@ angular.module('cherukuwadaApp.dashboard', [])
             var finalDaysRemain = todayInMs/(60*60*1000)
             return Math.floor(finalDaysRemain) + ' Hours ago.';
         } else {
-            daysLeftOrComplete = daysLeftOrComplete * - 1;
-            return Math.floor(daysLeftOrComplete) + ' Days Completed';
+            if((timeDiff * -1) < (60 * 1000)) {
+                daysLeftOrComplete = daysLeftOrComplete * - 1;
+                return Math.floor(daysLeftOrComplete) + ' Mins Ago ';
+            } else if((timeDiff * -1) < (60 * 60 * 1000)) {
+                daysLeftOrComplete = daysLeftOrComplete * - 1;
+                return Math.floor(daysLeftOrComplete) + ' Hours Ago';
+            } else {
+                daysLeftOrComplete = daysLeftOrComplete * - 1;
+                return Math.floor(daysLeftOrComplete) + ' Days Completed';
+            }
         }  
     };
 
@@ -146,7 +156,7 @@ angular.module('cherukuwadaApp.dashboard', [])
     $scope.fnCreatePost = function(newPost) {
         var postData = { name: newPost.name, body: newPost.body, created_by: $scope.existingUserDetails.name };
         $http({
-            url: 'http://hidden-lake-44952.herokuapp.com/posts',
+            url: $scope.serverPath + 'posts',
             dataType: 'json',
             method: 'POST',
             data: {post: postData},
@@ -168,7 +178,7 @@ angular.module('cherukuwadaApp.dashboard', [])
 
     $scope.getComments = function(commentsType, commentsTypeId) {
         $scope.postCommentsData = [];
-        var getCommentsUrl = 'http://hidden-lake-44952.herokuapp.com/' + commentsType + '/' + commentsTypeId + '/comments.json';
+        var getCommentsUrl = $scope.serverPath + commentsType + '/' + commentsTypeId + '/comments.json';
         $http({
         method : "GET",
             url : getCommentsUrl
@@ -182,7 +192,7 @@ angular.module('cherukuwadaApp.dashboard', [])
     $scope.createComment = function(commentsType, commentsTypeId, commentMessage) {
         var postData = { name: $scope.newComment.name, created_by: $scope.existingUserDetails.name };
         $http({
-            url: 'http://hidden-lake-44952.herokuapp.com/' + commentsType + '/' + commentsTypeId + '/comments',
+            url: $scope.serverPath + commentsType + '/' + commentsTypeId + '/comments',
             dataType: 'json',
             method: 'POST',
             data: {comment: postData},
