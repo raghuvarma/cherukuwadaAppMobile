@@ -94,8 +94,13 @@ angular.module('cherukuwadaApp.dashboard', [])
         $scope.show.posts = true;
         $scope.show.eventsDetailed = false;
         $scope.fnLoadPosts();
-        $scope.postCommentsData = []     
+        $scope.postCommentsData = []  
+        //$state.go('post',  {'postObject': postObject});   
     };
+
+    $scope.showPostComments = function(postObject) {
+        $state.go('post',  {'postObject': postObject});
+    }
 
     $scope.fnLoadPosts = function() {
         var postsUrl = $scope.serverPath + 'posts.json'
@@ -174,40 +179,6 @@ angular.module('cherukuwadaApp.dashboard', [])
         newPost.name = '';
         newPost.body = '';
         $scope.modal.hide();
-    };
-
-    $scope.getComments = function(commentsType, commentsTypeId) {
-        $scope.postCommentsData = [];
-        var getCommentsUrl = $scope.serverPath + commentsType + '/' + commentsTypeId + '/comments.json';
-        $http({
-        method : "GET",
-            url : getCommentsUrl
-        }).then(function mySucces(response) {
-            $scope.postCommentsData = response.data;
-        }, function myError(response) {
-            console.log(response.statusText);
-        });
-    }
-        
-    $scope.createComment = function(commentsType, commentsTypeId, commentMessage) {
-        var postData = { name: $scope.newComment.name, created_by: $scope.existingUserDetails.name };
-        $http({
-            url: $scope.serverPath + commentsType + '/' + commentsTypeId + '/comments',
-            dataType: 'json',
-            method: 'POST',
-            data: {comment: postData},
-            headers: {
-                "Content-Type": "application/json"
-            }
-
-        }).success(function(response){
-            $scope.createCommentData = response;
-            console.log('success response: ', response);
-            $scope.getComments(commentsType, commentsTypeId);
-        }).error(function(error){
-            console.log('error: ', error);
-        });
-        $scope.newComment.name = '';
-    }
+    };   
 
 });

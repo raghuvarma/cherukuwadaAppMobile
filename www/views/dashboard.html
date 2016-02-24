@@ -112,32 +112,15 @@
             <button id="fab-profile" class="button button-fab button-fab-bottom-right button-energized-900 pane activated" nav-view="active" style="opacity: 1; box-shadow: rgba(0, 0, 0, 0) 0px 0px 10px; transform: translate3d(0%, 0px, 0px);" ng-click="modal.show()"><i class="icon ion-plus"></i></button>
             <div class="row light table-heading">
             </div>
-            <div class="list card" data-ng-repeat="postObj in postsData track by $index">
+            <div class="list card" data-ng-repeat="postObj in postsData track by $index" data-ng-click="showPostComments(postObj)">
               <div class="item item-avatar ca-item-avatar">
                 <h2 data-ng-bind="postObj.name"></h2>
                 <p><span>Created By: </span><span data-ng-bind="postObj.created_by"></span></p>
               </div>
               <div class="item item-body ca-item-body">
                 <p data-ng-bind="postObj.body">                  
-                </p>
-                <p>
-                  <a href class="subdued" data-ng-click="getComments('posts', postObj.id)">Comments</a>
-                </p>
-              </div>
-              <div class="item item-body ca-item-body">
-                <div class="ca-comments-container" data-ng-repeat="comment in postCommentsData track by $index"> 
-                  <p data-ng-bind="comment.name"></p>
-                  <p>
-                    <span class="ca-commented-by-heading">Commented By: </span>
-                    <span class="ca-commented-by-data" data-ng-bind="comment.created_by"></span> @ 
-                    <span am-time-ago="comment.created_at"></span>
-                  </p>                
-                </div>
-                <div class="ca-comments-input">
-                  <textarea class="ca-comment-input" rows="3" data-ng-model="newComment.name" placeholder="comment message"></textarea>
-                  <button data-ng-click="createComment('posts', postObj.id, newComment.name)">Post</button>
-                </div>                
-              </div>
+                </p>                
+              </div>              
             </div>
           </div>
           <script id="templates/modal.html" type="text/ng-template">

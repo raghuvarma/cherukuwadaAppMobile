@@ -1,0 +1,68 @@
+<ion-view view-title="Post Detailed" align-title="left">
+    <ion-nav-bar class="bar-assertive-900" align-title="left">
+      <ion-nav-back-button class="no-text"></ion-nav-back-button>
+    </ion-nav-bar>
+    <ion-content style="background: url(img/login.jpg) center; background-size: cover;">
+      <div class="list find-detail">
+          <div class="tabs-striped tabs-color-assertive">
+            <div class="tabs ca-tabs">
+              <a class="tab-item active" href="#">
+                <i class="icon ion-person-stalker"></i>
+                Users
+              </a>
+              <a class="tab-item" href="#">
+                <i class="icon ion-star"></i>
+                Events
+              </a>
+              <a class="tab-item" href="#">
+                <i class="icon ion-ios-paper"></i>
+                Posts
+              </a>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="address-card card">
+            <div class="item item-text-wrap">
+                <div class="row">
+                  <div class="col col-50 padding-0">
+                    <span>Name : </span>
+                    <span data-ng-bind="existingUserDetails.name"></span>
+                  </div>
+                  <div class="col col-50 padding-0">
+                    <span>Mobile Number :</span>
+                    <span data-ng-bind="existingUserDetails.mobile"></span>
+                  </div>
+                </div>
+            </div>
+        </div>
+		    <div class="list card list-post-comments-container">
+              <div class="item item-avatar ca-item-avatar">
+                <h2 data-ng-bind="postObj.name"></h2>
+                <p><span>Created By: </span><span data-ng-bind="postObj.created_by"></span></p>
+              </div>
+              <div class="item item-body ca-item-body">
+                <p data-ng-bind="postObj.body">                  
+                </p>
+                <p>
+                  <a href class="subdued" data-ng-if="showComments">Comments</a>
+                </p>
+              </div>
+              <div class="item item-body ca-item-body">
+                <div class="ca-comments-container" data-ng-repeat="comment in postCommentsData track by $index"> 
+                  <p data-ng-bind="comment.name"></p>
+                  <p>
+                    <span class="ca-commented-by-heading">Commented By: </span>
+                    <span class="ca-commented-by-data" data-ng-bind="comment.created_by"></span> @ 
+                    <span am-time-ago="comment.created_at"></span>
+                  </p>                
+                </div>
+                <div class="ca-comments-input">
+                  <textarea class="ca-comment-input" rows="3" data-ng-model="newComment.name" placeholder="comment message"></textarea>
+                  <button data-ng-click="createComment('posts', postObj.id, newComment.name)">Post</button>
+                </div>                
+              </div>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>
