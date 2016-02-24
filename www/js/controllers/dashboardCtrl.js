@@ -53,6 +53,14 @@ angular.module('cherukuwadaApp.dashboard', [])
         $scope.show.posts = false;
         $scope.show.eventsDetailed = false;
         var eventsUrl = $scope.serverPath + 'events.json'
+        // $http.get("http://hidden-lake-44952.herokuapp.com/events.json")
+        //     .success(function(data) {
+        //        $scope.eventsData = data.data;
+        //     })
+        //     .error(function(data) {
+        //         alert("ERROR");
+        //     });
+
         $http({ method : "GET",
             url : eventsUrl
         }).then(function mySucces(response) {
@@ -66,15 +74,15 @@ angular.module('cherukuwadaApp.dashboard', [])
         var imageSrc = '';        
         if(eventObject) {
             if(eventObject.name.indexOf('Birthday') > -1) {
-                imageSrc = '../img/birthday.png';
+                imageSrc = 'img/birthday.png';
             } else if(eventObject.name.indexOf('Anniversary') > -1) {
-                imageSrc = '../img/marriage_anniversary.png';
+                imageSrc = 'img/marriage_anniversary.png';
             } else if(eventObject.name.indexOf('Marriage') > -1) {
-                imageSrc = '../img/marriage.png';
+                imageSrc = 'img/marriage.png';
             } else if(eventObject.name.indexOf('Upanayanam') > -1) {
-                imageSrc = '../img/upanayanam.png';
+                imageSrc = 'img/upanayanam.png';
             } else {
-                imageSrc = '../img/default.png';
+                imageSrc = 'img/default.png';
             }
             return imageSrc;
         }        
