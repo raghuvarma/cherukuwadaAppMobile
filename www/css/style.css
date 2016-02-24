@@ -87,10 +87,13 @@ p {
 .ca-user-name, .ca-user-mobile {
 	color: #FFFFFF !important;
 }
-.item.item-avatar.ca-item-avatar {
-	padding-left: 15px !important;
+.item.item-avatar.ca-item-avatar, .item.item-avatar.ca-event-item-avatar {
     padding-top: 10px !important;
     min-height: 20px !important;
+}
+
+.item.item-avatar.ca-item-avatar {
+	padding-left: 15px !important;
 }
 .item.item-body.ca-item-body, .ca-selected-event-body, .ca-selected-user-body {
     padding: 10px 15px !important;
@@ -137,5 +140,14 @@ p {
 .ca-commented-by-data {
 	font-style: cursive;
 }
-
-
+.button.button-balanced {
+    padding: 1px 19px !important;
+    padding: 1px 19px !important;
+    min-height: 8px !important;
+    line-height: 30px !important;
+    float: right !important;
+}
+.subdued.ca-subdued-comments {
+	font-weight: bold;
+    text-decoration: underline;
+}

@@ -110,6 +110,10 @@ angular.module('cherukuwadaApp.dashboard', [])
         $state.go('post',  {'postObject': postObject});
     }
 
+    $scope.showEventComments = function(eventObject) {
+        $state.go('event',  {'eventObject': eventObject});
+    }
+
     $scope.fnLoadPosts = function() {
         var postsUrl = $scope.serverPath + 'posts.json'
         $http({

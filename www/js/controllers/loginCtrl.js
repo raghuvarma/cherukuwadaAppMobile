@@ -3,7 +3,7 @@ angular.module('cherukuwadaApp.login', [])
 	$scope.allUsers = UserFactory.data;	$scope.signIn = function(username, password) {	
 		$scope.currentUser = $filter('filter')($scope.allUsers, {mobile:username});
 		if($scope.currentUser && $scope.currentUser[0] && $scope.currentUser[0].password == password){
-			alert('Your successfully login into your application');
+			//alert('Your successfully login into your application');
 			UserFactory.saveCurrentUser($scope.currentUser[0]);
 			$state.go('dashboard');
 		} else if(!$scope.currentUser[0]) {

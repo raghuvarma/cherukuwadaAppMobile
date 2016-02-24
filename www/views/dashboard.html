@@ -70,7 +70,7 @@
               </a>
             </div>
         </div>
-        <div data-ng-show="show.events && show.eventsDetailed">
+        <div data-ng-show="show.events && show.eventsDetailed" data-ng-click="showEventComments(selectedEvent)">
           <div class="list card ca-card-event-details">
             <div class="item item-avatar ca-selected-event-image">
               <img data-ng-src="{{getEventImage(selectedEvent)}}">
@@ -85,10 +85,10 @@
             <div class="item item-body ca-selected-event-body">
               <p data-ng-bind="selectedEvent.description">                
               </p>
-              <p>
+              <!-- <p>
                 <a href class="subdued">1 Like</a>
                 <a href class="subdued">5 Comments</a>
-              </p>
+              </p> -->
             </div>
           </div>          
         </div>
